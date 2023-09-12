@@ -30,3 +30,59 @@ body {
     color-scheme: dark;
   }
 }
+
+
+/*The following is for Settings*/
+.black{
+  color:black;
+}
+
+.red{
+  color:red;
+}
+
+.green{
+  color:green;
+}
+
+
+/* Creates the rainbow*/
+@keyframes rainbow {                  
+  0% { background: red; }
+  14% { background: orange; }
+  28% { background: yellow; }
+  42% { background: green; }
+  57% { background: blue; }
+  71% { background: indigo; }
+  85% { background: violet; }
+  100% { background: red; }
+}
+
+/*implements the rainbow keyframes to the class rainbow*/
+.rainbow {
+  animation: rainbow 10s linear infinite;
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  font-size: 36px;
+  font-weight: bold;
+}
+
+/*Cursor Style*/
+.default{
+  cursor: default;
+}
+
+.crosshair{
+  cursor: crosshair;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.rocket{
+  cursor: url('../../public/pics/rocket.png'), auto;
+}
