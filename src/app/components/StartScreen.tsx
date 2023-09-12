@@ -4,11 +4,12 @@ export default function StartScreen() {
     
     return (
         <>
+            <nav>Sign In</nav>
             <h1>Starlight</h1>
             <div>
-                <h2>Start</h2>
-                <h2>Options</h2>
-                <h2>Highscores</h2>
+            <button>Start</button>
+                <button>Settings</button>
+                <button>Highscores</button>
             </div>
         </>
     )
