@@ -1,2 +1,2 @@
 
-export type gameStatus =  'home'|'playing'|'game over'|'Settings'|'Highscores'; 
+export type GameState =  'home'|'playing'|'game over'|'Settings'|'Highscores'; 

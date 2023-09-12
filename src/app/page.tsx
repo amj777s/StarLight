@@ -1,9 +1,15 @@
+'use client'
 
-import { gameStatus } from "./types"
+import { GameState } from "./types"
 import StartScreen from "./components/StartScreen"
+import { useState } from "react"
 export default function Home() {
 
+  const [gameStatus, setGameStatus] = useState<GameState>('home');
+
   return (
-   <StartScreen />
+    <>
+    { gameStatus === 'home' && <StartScreen />}
+    </>
   )
 }

@@ -1,4 +1,23 @@
 
-.darkBg {
-    background-color: black
+.StartScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    color: white;
+    font-size: 2.5rem;
+    text-align: center;
+    gap: 20px;
+    padding: 30px;
+
+}
+
+.StartScreen > button {
+    width: 30%;
+}
+
+@media only screen and (max-width: 450px) {
+    .StartScreen{
+        width: 100%;
+    }
 }
