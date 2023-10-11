@@ -1,7 +1,7 @@
 
 export type GameState =  'home'|'playing'|'game over'|'Settings'|'Highscores'; 
 export type Position = {
-    x: number;
+    x: number,
     y: number
 }
 

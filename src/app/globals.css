@@ -10,6 +10,7 @@
 html{
   height: 100vh;
   width: 100vw;
+  font-size: 16px;
   background-color: rgb(26, 26, 26);
   color: white;
   overflow-x: hidden;
@@ -49,6 +50,15 @@ body {
 
 .darkBg {
   background-color: black
+}
+
+.fadeIn {
+  opacity: 1;
+  transition: all 1s ease-in;
+}
+
+.Font2Rem {
+  font-size: 2rem;
 }
 
 .signIn {
@@ -123,6 +133,20 @@ body {
   font-weight: bold;
 }
 
+@keyframes laser {
+  0% { color: red; }
+  14% { color: orange; }
+  28% { color: yellow; }
+  42% { color: green; }
+  57% { color: blue; }
+  71% { color: indigo; }
+  85% { color: violet; }
+  100% { color: red; }
+}
+
+.laser {
+  animation: laser 1s linear infinite;
+}
 /*Cursor Style*/
 .default{
   cursor: default;
