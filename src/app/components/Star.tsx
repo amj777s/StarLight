@@ -5,7 +5,8 @@ import '../globals.css';
 import { GameState, Position } from "../types";
 import stars from "../stars";
 
-    const topy = 0;
+const topy = 0;
+
 export default function Star({delay, setGameStatus}:{delay: number, setGameStatus: (state: GameState) => void}){
     const topx = Math.floor(Math.random() * 100); // used to set css style left: topx
     const [starImg, setStarImg] = useState(Object.keys(stars)[Math.floor(Math.random() * Object.keys(stars).length)] as keyof typeof stars); // Returns random key for stars object;
@@ -29,7 +30,7 @@ export default function Star({delay, setGameStatus}:{delay: number, setGameStatu
 
     return (
     <Image
-        className="star"
+        className="star"  
         src={stars[starImg]}
         height={50}
         width={50}

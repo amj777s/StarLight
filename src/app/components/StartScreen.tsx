@@ -9,7 +9,7 @@ export default function StartScreen({setGameStatus}: {setGameStatus: (state: Gam
         <div className={game.StartScreen}>
             <h1>Starlight</h1>
             <button className='activeButton' onClick={()=>setGameStatus('playing')}>Start</button>
-            <button className='activeButton'>Settings</button>
+            <button className='activeButton' onClick={()=>setGameStatus('settings')}>Settings</button>
             <button className='activeButton'>Highscores</button>
         </div>
     )
