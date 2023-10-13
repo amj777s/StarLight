@@ -27,6 +27,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100%;
+  gap: 25px
 }
 
 .activeButton {
@@ -72,19 +73,15 @@ body {
 .fnt3Rem {
   font-size: 3rem;
 }
-.fnt10Rem {
+.fnt1-5Rem {
   font-size: 10rem;
-}
-
-.fnt5Rem {
-  font-size: 5rem;
 }
 
 .signIn {
   font-size: 1rem;
   position: fixed;
-  top: 10px;
-  right: 10px;
+  top: 1%;
+  right: 1%;
 }
 /* 
 .star {
@@ -117,6 +114,10 @@ body {
 /*The following is for Settings*/
 .black{
   color:black;
+}
+
+.blue{
+  color: blue;
 }
 
 .red{
@@ -167,9 +168,6 @@ body {
   animation: laser 1s linear infinite;
 }
 
-
-
-
 /*Cursor Style*/
 .default{
   cursor: default;
@@ -184,5 +182,44 @@ body {
 }
 
 .rocket{
-  cursor: url('../../public/pics/rocket.png'), auto;
+  cursor: url('../../public/pics/cursors/rocket.png'), auto;
+}
+
+/* Cursor Color */
+.cursor-blue{
+  cursor: url('../../public/pics/cursors/blue-cursor.png'), auto;
+}
+
+
+.cursor-green{
+  cursor: url('../../public/pics/cursors/green-cursor.png'), auto;
+}
+
+.cursor-red{
+  cursor: url('../../public/pics/cursors/red-cursor.png'), auto;
+}
+
+@keyframes cursorRainbow {
+  0% {cursor: url('../../public/pics/cursors/blue-cursor.png');}
+  33%{cursor: url('../../public/pics/cursors/red-cursor.png');}
+  66%{cursor: url('../../public/pics/cursors/green-cursor.png');}
+  100%{cursor: url('../../public/pics/cursors/blue-cursor.png');}
+}
+
+.cursor-rainbow {
+  animation: cursorRainbow 1s linear infinite;
+}
+
+/* Audio */
+
+.audioButton {
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  top: 10%;
+  right: 1%;
+}
+.audioIcon {
+  position: absolute;
+  left: 8px;
 }
