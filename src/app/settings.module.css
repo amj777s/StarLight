@@ -1,0 +1,30 @@
+.settingsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    gap: 25px;
+    background-color: #333333;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px #878686;
+}
+
+.settingsPanel{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.settingsPanel > h3 {
+    transition: background-color 500ms linear;
+}
+
+.settingsPanel > h3:hover{
+    background-color: #4b4b4b;
+}
+
+
+
+

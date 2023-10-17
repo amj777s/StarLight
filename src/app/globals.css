@@ -30,11 +30,14 @@ body {
   gap: 25px
 }
 
+.active {
+  background-color: #4b4b4b;
+}
 .activeButton {
-  background-color: rgb(0, 68, 255);
+  background-color: #0044ff;
   color:  white;
   border-radius: 30px;
-  border-bottom: 9px solid  rgb(56, 107, 247);
+  border-bottom: 9px solid  #386bf7;
   padding: 10px;
   
 }
@@ -49,8 +52,15 @@ body {
   
 }
 
+.wmax-60px{
+  max-width: 60px;
+}
+
+.mg-wauto {
+  margin: 0 auto;
+}
 .blueBg {
-  background-color: rgb(2, 93, 222);
+  background-color: #0044ff;
 }
 
 .darkBg {
@@ -73,8 +83,13 @@ body {
 .fnt3Rem {
   font-size: 3rem;
 }
+
+.fnt2Rem {
+  font-size: 2rem;
+}
+
 .fnt1-5Rem {
-  font-size: 10rem;
+  font-size: 1.5rem;
 }
 
 .signIn {
@@ -126,6 +141,10 @@ body {
 
 .green{
   color:green;
+}
+
+.white {
+  color: white;
 }
 
 
