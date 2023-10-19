@@ -147,29 +147,30 @@ body {
   color: white;
 }
 
+.error {
+  color: red;
+}
+
+ .success {
+  color: green;
+ }
+
 
 /* Creates the rainbow*/
 @keyframes rainbow {                  
-  0% { background: red; }
-  14% { background: orange; }
-  28% { background: yellow; }
-  42% { background: green; }
-  57% { background: blue; }
-  71% { background: indigo; }
-  85% { background: violet; }
-  100% { background: red; }
+  0% { background-color: red; }
+  14% { background-color: orange; }
+  28% { background-color: yellow; }
+  42% { background-color: green; }
+  57% { background-color: blue; }
+  71% { background-color: indigo; }
+  85% { background-color: violet; }
+  100% { background-color: red; }
 }
 
 /*implements the rainbow keyframes to the class rainbow*/
 .rainbow {
-  animation: rainbow 10s linear infinite;
-  background-size: 300% 300%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  font-size: 36px;
-  font-weight: bold;
+  animation: rainbow 2s linear infinite;
 }
 
 @keyframes laser {
@@ -188,8 +189,13 @@ body {
 }
 
 /*Cursor Style*/
+
+.noCursor {
+  cursor: none;
+}
+
 .default{
-  cursor: default;
+  cursor: default; /* Change back*/
 }
 
 .crosshair{
@@ -218,16 +224,33 @@ body {
   cursor: url('../../public/pics/cursors/red-cursor.png'), auto;
 }
 
-@keyframes cursorRainbow {
-  0% {cursor: url('../../public/pics/cursors/blue-cursor.png');}
-  33%{cursor: url('../../public/pics/cursors/red-cursor.png');}
-  66%{cursor: url('../../public/pics/cursors/green-cursor.png');}
-  100%{cursor: url('../../public/pics/cursors/blue-cursor.png');}
+/* Cursor Styles */
+.custom {
+  position: fixed;
+  height: 16px;
+  width: 16px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 20;
 }
 
-.cursor-rainbow {
-  animation: cursorRainbow 1s linear infinite;
+.ball {
+  border-radius: 50%;
 }
+
+.littleStar {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.arrow {
+  clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+}
+
+.x {
+  clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+  transform: rotate(720deg);
+}
+
 
 /* Audio */
 

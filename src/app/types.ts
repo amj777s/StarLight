@@ -1,5 +1,5 @@
 
-export type GameState =  'home'|'playing'|'game over'|'settings'|'highscores'; 
+export type GameState =  'home'|'playing'|'game over'|'settings'|'highscores' | 'login' | 'signup'; 
 
 
 export interface Position{
