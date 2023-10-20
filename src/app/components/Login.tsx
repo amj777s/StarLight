@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import login from '../login.module.css';
 import '../globals.css';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { GameState } from '../types';
 
 //TODO FIX problem with game data not being loaded on reidrect to homepage
@@ -12,17 +10,18 @@ export default function Login({
 }:{
     setGameStatus: (state: GameState) => void
 }) {
+    
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loggedIn, setLogin] = useState(false);
     const [attemptedLogin, setLoginAttempt] = useState(false);
-    const router = useRouter();
+   
 
     useEffect(() => {
         if(loggedIn) {
-            router.push('/');
+            setGameStatus('home');
         }
-    }, [loggedIn, router])
+    }, [loggedIn])
 
     const handleFields = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const newValue: string = e.target.value;
@@ -44,7 +43,7 @@ export default function Login({
         const form = e.currentTarget;
         const formData = new FormData(form);
         const formDataJson = JSON.stringify(Object.fromEntries(formData.entries()));
-        const response = await fetch('/api/jeopardy/login',{
+        const response = await fetch('/api/starlight/login',{
             method: 'POST',
             body: formDataJson
         });
@@ -67,7 +66,7 @@ export default function Login({
             <input id='password' name='password' type='password' value={password} onChange={handleFields} required />
 
             <button className='activeButton' type='submit' disabled={!username || !password}>Login</button>
-            <p>Don&apos;t have an account?<u><Link href={{ pathname: '/login', query: { entry: 'signup' } }}>Sign Up</Link></u></p>
+            <p>Don&apos;t have an account?<span onClick={()=> setGameStatus('signup')}>Signup</span></p>
         </form>
     )
 }

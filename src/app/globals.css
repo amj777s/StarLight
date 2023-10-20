@@ -41,9 +41,22 @@ body {
   padding: 10px;
   
 }
+
+
 .activeButton:hover {
   background-color: rgb(0, 53, 198);
 }
+
+.activeButton:disabled:hover {
+  cursor: not-allowed;
+}
+
+.activeButton:disabled {
+  background-color: rgb(84, 83, 83);  
+  border-bottom: 9px solid  #939394;
+  color:  #fcfcfa;
+}
+
 
 .activeButton:active {
   transform: translateY(9px);
@@ -51,6 +64,7 @@ body {
   margin-bottom: 9px;
   
 }
+
 
 .wmax-60px{
   max-width: 60px;

@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import '../globals.css';
 import login from '../login.module.css';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { GameState } from '../types';
 //usesrname and password need to be less than 30 characters to be accepted into db
 
@@ -23,14 +21,12 @@ export default function SignUp({
         length: false
     });
     const [redirect, setRedirect] = useState(false);
-    
-    const router = useRouter();
 
     useEffect(() => {
         if(redirect) {
-            router.push('/');
+            setGameStatus('home');
         }
-    })
+    },[redirect])
 
     useEffect(()=> {
         checkPasswordRequirements();
@@ -53,7 +49,7 @@ export default function SignUp({
     const handleUsernameCheck = async (e: React.FocusEvent<HTMLInputElement>) => {
 
         //Should return boolean indicating whether or not username is in db, there already taken
-        const response = await fetch(`/api/jeopardy/users/${username}`);
+        const response = await fetch(`/api/starlight/users/${username}`);
 
         // TODO: handle errors for 500
         if (response.ok) {
@@ -108,7 +104,7 @@ export default function SignUp({
         const form = e.currentTarget;
         const formData = new FormData(form);
         const formDataJson = JSON.stringify(Object.fromEntries(formData.entries()));
-        const response = await fetch('/api/jeopardy/users',{
+        const response = await fetch('/api/starlight/users',{
             method: 'POST',
             body: formDataJson
         });

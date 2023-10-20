@@ -13,3 +13,10 @@ export interface MouseData extends Position {
 }
 
 export type ChangeGameStatus = (status: GameState) => void;
+
+export type ScoreData = {
+    id: number,
+    score: number,
+    username: string,
+    created: Date
+}
