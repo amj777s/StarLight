@@ -126,9 +126,10 @@ export default function SignUp({
             <label htmlFor='confirmEmail'>Confirm Email</label>
             <input id='confirmEmail' name='confirmEmail' type='text' onChange={handleFields} value={emailCopy} required maxLength={30} />
            
+            {!userNameAvailable && <p className='error'>Username not available!</p>}
             <label htmlFor='username'>Username</label>
             <input id='username' name='username' type='text' onBlur={handleUsernameCheck} onChange={handleFields} value={username} required maxLength={30} />
-            {!userNameAvailable && <p className='error'>Username not available!</p>}
+            
 
             <label htmlFor='password'>Password</label>
             <input id='password' name='password' type='text' onChange={handleFields} value={password} required maxLength={30} />

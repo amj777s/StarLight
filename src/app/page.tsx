@@ -9,6 +9,7 @@ import Settings from "./components/Settings";
 import SignUp from "./components/Signup";
 import Login from "./components/Login";
 import './globals.css';
+import Highscores from "./components/Highscores";
 
 export default function Home() {
 
@@ -42,6 +43,7 @@ export default function Home() {
       {gameStatus === 'playing' && <Game count={count} setCount={setCount} setGameStatus={setGameStatus} delay={delay} />}
       {gameStatus === 'game over' && <GameOver count={count} setCount={setCount} setGameStatus={setGameStatus}  delay={delay}/>}
       {gameStatus === 'settings' && <Settings setCursorStyle={setCursorStyle}  setSong={setSong}  setGameStatus={setGameStatus} />}
+      {gameStatus === 'highscores' && <Highscores setGameStatus={setGameStatus}/>}
       {gameStatus === 'signup' && <SignUp setGameStatus={setGameStatus}/>}
       {gameStatus === 'login' && <Login setGameStatus={setGameStatus}/>}
     </div>
