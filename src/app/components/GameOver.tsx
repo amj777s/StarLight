@@ -5,7 +5,8 @@ import { GameState } from '../types';
 import { useEffect } from 'react';
 import gameover from '../gameover.module.css';
 import { json } from 'stream/consumers';
-//figure out how to fade component in
+
+
 export default function GameOver({
     count,
     delay,
