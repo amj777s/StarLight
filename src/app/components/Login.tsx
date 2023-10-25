@@ -6,9 +6,12 @@ import { GameState } from '../types';
 //TODO FIX problem with game data not being loaded on reidrect to homepage
 
 export default function Login({
-    setGameStatus
+    setGameStatus,
+    setUser
 }:{
-    setGameStatus: (state: GameState) => void
+    setGameStatus: (state: GameState) => void,
+    setUser:(user: string) => void
+    
 }) {
     
     const [username, setUsername] = useState('');
@@ -19,6 +22,7 @@ export default function Login({
 
     useEffect(() => {
         if(loggedIn) {
+            setUser(username);
             setGameStatus('home');
         }
     }, [loggedIn])
@@ -48,6 +52,10 @@ export default function Login({
             body: formDataJson
         });
         const data: {loginAccepted: boolean} = await response.json();
+        
+        if(data.loginAccepted){
+            localStorage.setItem('user', username)
+        }
         setLogin(data.loginAccepted);
         setLoginAttempt(true);
     }

@@ -5,9 +5,11 @@ import { GameState } from '../types';
 //usesrname and password need to be less than 30 characters to be accepted into db
 
 export default function SignUp({
-    setGameStatus
-}:{
-    setGameStatus: (state: GameState) => void
+    setGameStatus,
+    setUser
+}: {
+    setGameStatus: (state: GameState) => void,
+    setUser:(user: string) => void
 }) {
     const [username, setUsername] = useState('');
     const [userNameAvailable, setUserNameAvailable] = useState(true);
@@ -20,19 +22,13 @@ export default function SignUp({
         special: false,
         length: false
     });
-    const [redirect, setRedirect] = useState(false);
-
+    
+   
     useEffect(() => {
-        if(redirect) {
-            setGameStatus('home');
-        }
-    },[redirect])
-
-    useEffect(()=> {
         checkPasswordRequirements();
     }, [password])
 
-    const checkPasswordRequirements = ():void => {
+    const checkPasswordRequirements = (): void => {
         const uppercasePasses = /[A-Z]/.test(password);
         const lowercasePasses = /[a-z]/.test(password);
         const specialPasses = /[!@#$%^&*]/.test(password);
@@ -68,7 +64,7 @@ export default function SignUp({
     }
 
     const handleFields = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        
+
         const newValue: string = e.target.value;
         const inputName: string = e.target.name;
         switch (inputName) {
@@ -90,46 +86,46 @@ export default function SignUp({
         }
     }
 
-    const readyToSubmit = ():boolean => {
-        const passwordRequirementsMet:boolean = Object.values(passwordRequirements).every(value => value);
-        if(email === emailCopy && email && username && userNameAvailable && passwordRequirementsMet){
+    const readyToSubmit = (): boolean => {
+        const passwordRequirementsMet: boolean = Object.values(passwordRequirements).every(value => value);
+        if (email === emailCopy && email && username && userNameAvailable && passwordRequirementsMet) {
             return false
         }
 
         return true
     }
     //TODO access form data to submit to db
-    const handleSignUp =  async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = e.currentTarget;
         const formData = new FormData(form);
         const formDataJson = JSON.stringify(Object.fromEntries(formData.entries()));
-        const response = await fetch('/api/starlight/users',{
+        const response = await fetch('/api/starlight/users', {
             method: 'POST',
             body: formDataJson
         });
-        const data: {username: string} = await response.json();
 
-        setRedirect(true);
-        
+        setUser(username);
+        setGameStatus('home');
+
 
     }
 
     return (
         <form className={login.signupForm} onSubmit={handleSignUp}>
             <h2> SIGN UP</h2>
-        
+
             {(email != emailCopy && emailCopy) && <p className='error'>Emails do not match</p>}
             <label htmlFor='email'>Email</label>
             <input id='email' name='email' type='text' onChange={handleFields} value={email} required maxLength={30} />
 
             <label htmlFor='confirmEmail'>Confirm Email</label>
             <input id='confirmEmail' name='confirmEmail' type='text' onChange={handleFields} value={emailCopy} required maxLength={30} />
-           
+
             {!userNameAvailable && <p className='error'>Username not available!</p>}
             <label htmlFor='username'>Username</label>
             <input id='username' name='username' type='text' onBlur={handleUsernameCheck} onChange={handleFields} value={username} required maxLength={30} />
-            
+
 
             <label htmlFor='password'>Password</label>
             <input id='password' name='password' type='text' onChange={handleFields} value={password} required maxLength={30} />
@@ -142,7 +138,7 @@ export default function SignUp({
             </ul>
 
             <button className='activeButton' type='submit' disabled={readyToSubmit()}>Sign Up</button>
-            <p>Already A User? <span onClick={()=> setGameStatus('login')}>Login</span></p>
+            <p>Already A User? <span onClick={() => setGameStatus('login')}>Login</span></p>
         </form>
     )
 }

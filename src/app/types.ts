@@ -1,5 +1,5 @@
 
-export type GameState =  'home'|'playing'|'game over'|'settings'|'highscores' | 'login' | 'signup'; 
+export type GameState =  'home'|'playing'|'game over'|'settings'|'highscores' | 'login' | 'signup' | 'userpage'; 
 
 
 export interface Position{
@@ -14,9 +14,13 @@ export interface MouseData extends Position {
 
 export type ChangeGameStatus = (status: GameState) => void;
 
-export type ScoreData = {
+export interface ScoreData{
     id: number,
     score: number,
     username: string,
     created: Date
+}
+
+export interface RankedScoreData extends ScoreData {
+    rank: string
 }

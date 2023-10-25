@@ -1,17 +1,21 @@
 
 import { NextResponse } from "next/server";
 import prisma from "../../../../../prisma/prisma";
-import { ScoreData } from "@/app/types";
+import { RankedScoreData} from "@/app/types";
 import { NextRequest } from "next/server";
 
 export async function GET(
     req: Request, // Has to be included to access params
 ) {
-
-
-    const highscores: ScoreData[] = await prisma.$queryRaw`SELECT * from starlight_highscores ORDER BY score DESC LIMIT 100`;
+    const highscores: RankedScoreData[] = await prisma.$queryRaw`SELECT id,username,score,created,Rank() OVER(ORDER BY score desc) rank from starlight_highscores LIMIT 100`;
+   
+    // Used to convert BigInt into Int as json.stringify() throws an error
+    const revisedHighscores = highscores.map(score=> {
+        return {...score, rank: parseInt(score.rank)}
+    })
+    
     return NextResponse.json(
-        highscores,
+        revisedHighscores,
         { status: 200 }
     )
 };  
@@ -19,11 +23,11 @@ export async function GET(
 export async function POST(
     req: NextRequest
 ) {
-    const { username, score} = await req.json();
+    const { user, score} = await req.json();
     const created = new Date();
     
     //check to see if a user has the same score already in db to prevent duplicates
-    const duplicateSCore: {username: string, score: number}[] = await prisma.$queryRaw`SELECT username, score from starlight_highscores WHERE username = ${username} AND score = ${score}`;
+    const duplicateSCore: {username: string, score: number}[] = await prisma.$queryRaw`SELECT username, score from starlight_highscores WHERE username = ${user} AND score = ${score}`;
     
     
     if(duplicateSCore.length > 0){
@@ -31,7 +35,7 @@ export async function POST(
     }
     
     // Update highscores with round info
-    await prisma.$executeRaw`INSERT INTO starlight_highscores (score, username, created) VALUES(${score}, ${username}, ${created})`;
+    await prisma.$executeRaw`INSERT INTO starlight_highscores (score, username, created) VALUES(${score}, ${user}, ${created})`;
 
 
     return NextResponse.json({status: 200});

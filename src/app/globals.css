@@ -25,7 +25,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100%;
-  gap: 25px
+  gap: 25px;
 }
 
 .container-no-align{
@@ -72,7 +72,6 @@ body {
 
 }
 
-
 .wmax-60px {
   max-width: 60px;
 }
@@ -81,13 +80,54 @@ body {
   margin: 0 auto;
 }
 
+.alignSelf {
+  align-self: center;
+}
+
 .blueBg {
   background-color: #0044ff;
+}
+
+.greenBg {
+  background-color: #008000;
+}
+
+.seashellBlueBg{
+  background-color: #95cfd5;
+}
+
+.leafGreen {
+  background-color: #5fb24d;
+}
+
+.purpleBg {
+  background-color: #70367c;
+}
+
+.greenBrdr {
+  border: 5px solid green;
+}
+
+.blueBrdr {
+  border: 5px solid blue;
 }
 
 .darkBg {
   background-color: black
 }
+
+/* Themes */
+
+.dark {
+  background-color: rgb(26, 26, 26);
+}
+
+.light {
+  background-color: #fff;
+  color: black;
+}
+
+
 
 .fadeIn {
   opacity: 1;
@@ -114,11 +154,16 @@ body {
   font-size: 1.5rem;
 }
 
-.signIn {
+.LogIn {
   font-size: 1rem;
   position: fixed;
   top: 1%;
   right: 1%;
+}
+
+.LogIn:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 /* 
@@ -382,7 +427,7 @@ body {
 }
 
 
-/* Audio */
+/* Option Buttons */
 
 .audioButton {
   position: fixed;
@@ -390,9 +435,25 @@ body {
   width: 50px;
   top: 10%;
   right: 1%;
+  pointer-events: none;
 }
 
-.audioIcon {
+.optionButton {
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  right: 1%;
+}
+
+.firstOption {
+  top: 10%;
+}
+
+.secondOption {
+  top:19%;
+}
+
+.optionIcon {
   position: absolute;
-  left: 8px;
+  pointer-events: none;
 }

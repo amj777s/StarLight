@@ -1,0 +1,88 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 5vw;
+    gap: 5vh;
+}
+
+
+.sectionContainer {
+    display: flex;
+    flex-direction: column;
+    max-height: 30vh;
+    overflow-y: scroll;
+    gap: 2vh;
+   
+}
+
+.stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 2vw;
+}
+
+.stat {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 10vw;
+    width: 10vw;
+    min-width: 125px;
+    min-height: 125px;
+    border-radius: 1.5vw;
+    font-weight: bold;
+    font-size: 1.5rem;
+    
+}
+
+.streaks{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    width: 50vw;
+    min-height: 125px;
+    height: 10vw;
+    background-color:#fd7e50;
+    border-radius: 1.5vw;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.tag {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    
+}
+    
+
+.score{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    font-weight: bold;
+    line-height: 1.5;
+    
+}
+
+.score:first-child  {
+    color: #0044ff;
+}
+.score > p {
+    width: 25%;
+    text-align: center;
+}
+
+
