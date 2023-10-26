@@ -16,9 +16,9 @@ export async function GET(
   // Will return an empty array if no errors are thrown
   const scores: ScoreData[] = await prisma.$queryRaw` SELECT *  from starlight_highscores WHERE username=${params.user}`;
   const avgScore: { avg_score: number }[] = await prisma.$queryRaw`SELECT ROUND(AVG(score),1) AS avg_score from starlight_highscores where username=${params.user}`;
-  const rank: {username: string, pos: string}[] = await prisma.$queryRaw`with ranks AS (Select username,score, Rank() OVER(ORDER BY score desc) rank from starlight_highscores) SELECT username, Min(rank) as pos from ranks Group by 1 having username = ${params.user};`
+  const rank: {username: string, pos: string}[] = await prisma.$queryRaw`with ranks AS (Select username,score, Rank() OVER(ORDER BY score desc) rank from starlight_highscores) SELECT username, Min(rank) as pos from ranks Group by 1 having username=${params.user}`;
   const intialValue:number = 0;
-  const totalScore: number = scores.reduce((accumulator, currentScoreData) => accumulator + currentScoreData.score, intialValue)
+  const totalScore: number = scores.reduce((accumulator, currentScoreData) => accumulator + currentScoreData.score, intialValue);
 
   return NextResponse.json({
     scores,

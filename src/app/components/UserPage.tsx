@@ -5,12 +5,19 @@ import '../../app/globals.css'
 import { GameState, ScoreData } from "../types";
 import userpage from '@/app/userpage.module.css';
 
+
 async function getUserData(url: string) {
     const response = await fetch(url);
     const data: { scores: ScoreData[], avgScore: number, rank: number, totalScore: number } = await response.json();
 
     return data
 }
+
+/** 
+ *  provided a number, will return a string with the ordinal tacked on
+ * @param n - a number
+ * @returns - a string with the number and respective ordnial combined
+ */
 
 function getOrdinal(n: number) {
     let ord = 'th';
@@ -38,8 +45,15 @@ export default function UserPage({
 }) {
     const { data, error, isLoading } = useSWR(`/api/starlight/users/${user}/profile`, getUserData);
 
+    // Most errors will be caused by failed query do to lack of data in db. Fix route to provide which specific query failed
     if (error) {
-        return <h1>error</h1>
+        return (
+            <>
+                <h1>Play a game first to view your stats</h1>
+                <button className="activeButton wmax-60px mg-auto alignSelf" onClick={() => setGameStatus('home')}>Back</button>
+
+            </>
+        )
     }
 
     if (isLoading) {
@@ -52,7 +66,6 @@ export default function UserPage({
 
     }
     if (data) {
-
 
         return (
             <div className={userpage.container}>
@@ -72,7 +85,8 @@ export default function UserPage({
                             <p>{data.totalScore}</p>
                             <p className={userpage.tag}>Total</p>
                         </div>
-                        <div className={userpage.streaks}>
+                        {/* need to come up with achievements */}
+                        <div className={userpage.streaks}> 
                             <p className={`${userpage.tag}`}>achievements</p>
                         </div>
                     </div>

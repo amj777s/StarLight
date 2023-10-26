@@ -74,7 +74,7 @@ export default function Login({
             <input id='password' name='password' type='password' value={password} onChange={handleFields} required />
 
             <button className='activeButton' type='submit' disabled={!username || !password}>Login</button>
-            <p>Don&apos;t have an account?<span onClick={()=> setGameStatus('signup')}>Signup</span></p>
+            <p>Don&apos;t have an account? <span className='underline' onClick={()=> setGameStatus('signup')}>Signup</span></p>
         </form>
     )
 }

@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import {cookies} from 'next/headers';
 import prisma from "../../../../../prisma/prisma";
 import { checkPassword } from "@/app/utils/signupHelper";
 
@@ -29,13 +28,7 @@ export async function POST(
         // Keeps throwing error when checkPassword (which implements bcrypt.compare) returns false 
         // solved by catching the value as the error and passing that as body in the response
         const loginAccepted= await checkPassword(password, hash);  
-        const oneWeek = 60 *60 * 24 * 7;
-        // create cookie so users dont have to log in after each reload;
-        if(loginAccepted) {
-            cookies().set('user', username, {secure: true, maxAge: oneWeek, sameSite: 'strict'});
-           
-        }
-    
+       
     
         return NextResponse.json({loginAccepted: loginAccepted}, {status: 200});
     

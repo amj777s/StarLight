@@ -1,5 +1,5 @@
 .scoreTable{
-    
+    position: relative;
     width: 90%;
     max-height: 60vh;
     overflow-y: auto;

@@ -2,9 +2,7 @@
 
 import '../globals.css';
 import { GameState } from '../types';
-import { useEffect } from 'react';
 import gameover from '../gameover.module.css';
-import { json } from 'stream/consumers';
 
 
 export default function GameOver({

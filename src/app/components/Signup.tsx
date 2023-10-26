@@ -9,7 +9,7 @@ export default function SignUp({
     setUser
 }: {
     setGameStatus: (state: GameState) => void,
-    setUser:(user: string) => void
+    setUser: (user: string) => void
 }) {
     const [username, setUsername] = useState('');
     const [userNameAvailable, setUserNameAvailable] = useState(true);
@@ -22,8 +22,8 @@ export default function SignUp({
         special: false,
         length: false
     });
-    
-   
+
+
     useEffect(() => {
         checkPasswordRequirements();
     }, [password])
@@ -94,7 +94,7 @@ export default function SignUp({
 
         return true
     }
-    //TODO access form data to submit to db
+   
     const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = e.currentTarget;
@@ -104,9 +104,13 @@ export default function SignUp({
             method: 'POST',
             body: formDataJson
         });
+        if (response.ok) {
+            localStorage.setItem('user', username)
+            setUser(username);
+            setGameStatus('home');
 
-        setUser(username);
-        setGameStatus('home');
+        }
+
 
 
     }
@@ -138,7 +142,7 @@ export default function SignUp({
             </ul>
 
             <button className='activeButton' type='submit' disabled={readyToSubmit()}>Sign Up</button>
-            <p>Already A User? <span onClick={() => setGameStatus('login')}>Login</span></p>
+            <p>Already A User? <span className='underline' onClick={() => setGameStatus('login')}>Login</span></p>
         </form>
     )
 }

@@ -40,7 +40,7 @@ export default function Highscores({
         <>
             <h1>Highscores</h1>
             <ul className={scores.scoreTable}>
-                <li key='header' className={scores.score}>
+                <li key='header' className={`${scores.score}`}>
                     <p>Rank</p>
                     <p>Score</p>
                     <p>Username</p>

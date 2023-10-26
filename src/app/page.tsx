@@ -24,16 +24,16 @@ export default function Home() {
   const [playing, setPlaying] = useState<boolean>(false);
   const mousePosition = useRef<Position>({ x: 0, y: 0 });
   const mouse = useRef<HTMLDivElement>(null);
-  const {theme, setTheme} = useContext(ThemeContext);
+  const { theme, setTheme } = useContext(ThemeContext);
   const [user, setUser] = useState('');
 
 
-  useEffect(()=> {
-    const user = localStorage.getItem('user');
-    if(user != null){
-      setUser(user);
+  useEffect(() => {
+    const potentialUser = localStorage.getItem('user');
+    if (potentialUser != null) {
+      setUser(potentialUser);
     }
-  },[user])
+  }, [user])
 
   const changePosition = (e: React.MouseEvent<HTMLDivElement>) => {
     mousePosition.current = { x: e.clientX, y: e.clientY }
@@ -42,11 +42,28 @@ export default function Home() {
       mouse.current.style.top = `${e.clientY}px`;
     }
   }
-  
+
+  const logOut = () => {
+
+    if (localStorage.getItem('user')) {
+      localStorage.removeItem('user');
+      setUser('');
+    }
+
+  }
+
   // Control whether to show login button or username 
   let greeting;
-  if(user){
-    greeting = <span className="LogIn" onClick={()=> setGameStatus('userpage')}>{user}</span>
+  if (user) {
+    greeting = (
+      <div className="LogIn">
+        <p id="user" onClick={() => setGameStatus('userpage')}>{user}</p>
+        <ul id='menu'>
+          <li onClick={() => setGameStatus('userpage')}>Home Page</li>
+          <li onClick={logOut}>Log Out</li>
+        </ul>
+      </div>
+    )
   }
   else {
     greeting = <h1 className='LogIn activeButton' onClick={() => setGameStatus('login')}>Login</h1>
@@ -58,8 +75,8 @@ export default function Home() {
       {greeting}
       <audio src={song} loop autoPlay muted={!playing}> </audio>
       {cursorStyle.includes('custom') && <div className={cursorStyle} ref={mouse}></div>}
-      <div className="activeButton optionButton firstOption" onClick={()=> setPlaying(!playing)}><img className="optionIcon" src="/pics/audioIcon.png" /></div>
-      <div className="activeButton optionButton secondOption" onClick={()=> theme === 'dark'? setTheme('light'): setTheme('dark')}><img className="optionIcon" height={30 } width={30} src="/pics/brightness.png"/></div>
+      <div className="activeButton optionButton firstOption" onClick={() => setPlaying(!playing)}><img className="optionIcon" src="/pics/audioIcon.png" /></div>
+      <div className="activeButton optionButton secondOption" onClick={() => theme === 'dark' ? setTheme('light') : setTheme('dark')}><img className="optionIcon" height={30} width={30} src="/pics/brightness.png" /></div>
       {gameStatus === 'home' && <StartScreen setGameStatus={setGameStatus} />}
       {gameStatus === 'playing' && <Game count={count} setCount={setCount} setGameStatus={setGameStatus} delay={delay} />}
       {gameStatus === 'game over' && <GameOver user={user} count={count} setCount={setCount} setGameStatus={setGameStatus} delay={delay} />}

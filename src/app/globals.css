@@ -1,8 +1,10 @@
+
+/* MAIN ELEMENTS */
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 html {
@@ -19,6 +21,8 @@ body {
   height: 100%;
 }
 
+
+
 .container {
   display: flex;
   flex-direction: column;
@@ -26,6 +30,7 @@ body {
   align-items: center;
   height: 100%;
   gap: 25px;
+  font-weight: bold;
 }
 
 .container-no-align{
@@ -40,37 +45,19 @@ body {
   background-color: #4b4b4b;
 }
 
-.activeButton {
-  background-color: #0044ff;
-  color: white;
-  border-radius: 30px;
-  border-bottom: 9px solid #386bf7;
-  padding: 10px;
 
+/* TEXT DECORATIONS */
+
+.underline {
+  cursor: pointer;
+}
+
+.underline:hover {
+  text-decoration: underline;
 }
 
 
-.activeButton:hover {
-  background-color: rgb(0, 53, 198);
-}
-
-.activeButton:disabled:hover {
-  cursor: not-allowed;
-}
-
-.activeButton:disabled {
-  background-color: rgb(84, 83, 83);
-  border-bottom: 9px solid #939394;
-  color: #fcfcfa;
-}
-
-
-.activeButton:active {
-  transform: translateY(9px);
-  border-bottom: 0;
-  margin-bottom: 9px;
-
-}
+/* POSITIONING */
 
 .wmax-60px {
   max-width: 60px;
@@ -83,6 +70,8 @@ body {
 .alignSelf {
   align-self: center;
 }
+
+/* BACKGROUND AND BORDER COLORS */
 
 .blueBg {
   background-color: #0044ff;
@@ -113,13 +102,15 @@ body {
 }
 
 .darkBg {
-  background-color: black
+  background-color: black;
+  color: white;
 }
 
 /* Themes */
 
 .dark {
   background-color: rgb(26, 26, 26);
+  color: white;
 }
 
 .light {
@@ -128,11 +119,7 @@ body {
 }
 
 
-
-.fadeIn {
-  opacity: 1;
-  transition: all 1s ease-in;
-}
+/* Font Sizes */
 
 .fnt10Rem {
   font-size: 10rem;
@@ -161,40 +148,35 @@ body {
   right: 1%;
 }
 
-.LogIn:hover {
+
+#user:hover {
   cursor: pointer;
+  text-decoration: underline;
+  
+}
+#menu {
+  opacity: 0;
+  list-style-position: inside;
+  transition: opacity 0.5s linear;
+
+}
+
+#user:hover + ul{
+  opacity: 1;
+}
+
+#menu:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+#menu > li:hover {
   text-decoration: underline;
 }
 
-/* 
-.star {
-  z-index: 10;
-  position: fixed;
-  top: 0;
-  left: 50;
-  opacity: 1;
-  transition: all 1s ease;
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-} */
-
-/* .star:active{
-  opacity: 0.25;
-  top:0;
-  transform: rotate(90deg);
-  width: 25px;
-  height: 25px;
-} */
 
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
-
-
-/*The following is for Settings*/
+/*General Colors*/
 .black {
   color: black;
 }
@@ -223,7 +205,7 @@ body {
   color: green;
 }
 
-/* Loading Animation */
+/*Animations */
 
 @keyframes loading {
   0% {
@@ -362,7 +344,7 @@ body {
   animation: laser 1s linear infinite;
 }
 
-/*Cursor Style*/
+/*Cursor Styles*/
 
 .noCursor {
   cursor: none;
@@ -427,7 +409,7 @@ body {
 }
 
 
-/* Option Buttons */
+/*Buttons */
 
 .audioButton {
   position: fixed;
@@ -456,4 +438,37 @@ body {
 .optionIcon {
   position: absolute;
   pointer-events: none;
+  top: 8px;
+}
+
+.activeButton {
+  background-color: #0044ff;
+  color: inherit;
+  /* color: white; */
+  border-radius: 30px;
+  border-bottom: 9px solid #386bf7;
+  padding: 10px;
+
+}
+
+.activeButton:hover {
+  background-color: rgb(0, 53, 198);
+}
+
+.activeButton:disabled:hover {
+  cursor: not-allowed;
+}
+
+.activeButton:disabled {
+  background-color: rgb(84, 83, 83);
+  border-bottom: 9px solid #939394;
+  /* color: #fcfcfa; */
+}
+
+
+.activeButton:active {
+  transform: translateY(9px);
+  border-bottom: 0;
+  margin-bottom: 9px;
+
 }
