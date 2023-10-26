@@ -22,7 +22,7 @@ export default function Star({delay, setGameStatus}:{delay: number, setGameStatu
     
     useEffect(()=> {
         setTimeout(()=> {
-            setPosition({x:bottomEnd, y:100});
+            setPosition({x:bottomEnd, y:105});
             setRotate('720deg');
         }, delay)
     },[])
