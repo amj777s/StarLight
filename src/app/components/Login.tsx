@@ -8,20 +8,20 @@ import { GameState } from '../types';
 export default function Login({
     setGameStatus,
     setUser
-}:{
+}: {
     setGameStatus: (state: GameState) => void,
-    setUser:(user: string) => void
-    
+    setUser: (user: string) => void
+
 }) {
-    
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loggedIn, setLogin] = useState(false);
     const [attemptedLogin, setLoginAttempt] = useState(false);
-   
+
 
     useEffect(() => {
-        if(loggedIn) {
+        if (loggedIn) {
             setUser(username);
             setGameStatus('home');
         }
@@ -42,18 +42,18 @@ export default function Login({
         }
     }
 
-    const handleLogin = async (e:React.FormEvent<HTMLFormElement>) => {
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = e.currentTarget;
         const formData = new FormData(form);
         const formDataJson = JSON.stringify(Object.fromEntries(formData.entries()));
-        const response = await fetch('/api/starlight/login',{
+        const response = await fetch('/api/starlight/login', {
             method: 'POST',
             body: formDataJson
         });
-        const data: {loginAccepted: boolean} = await response.json();
-        
-        if(data.loginAccepted){
+        const data: { loginAccepted: boolean } = await response.json();
+
+        if (data.loginAccepted) {
             localStorage.setItem('user', username)
         }
         setLogin(data.loginAccepted);
@@ -63,18 +63,21 @@ export default function Login({
 
 
     return (
-        <form className={login.loginForm} onSubmit={handleLogin}>
-            <h2>Login</h2>
+        <>
+            <form className={login.loginForm} onSubmit={handleLogin}>
+                <h2>Login</h2>
 
-            {!loggedIn && attemptedLogin && <p className='error'>Username or password is incorrect!</p>}
-            <label htmlFor='username'>Username</label>
-            <input id='username' name='username' type='text' value={username} onChange={handleFields} required />
+                {!loggedIn && attemptedLogin && <p className='error'>Username or password is incorrect!</p>}
+                <label htmlFor='username'>Username</label>
+                <input id='username' name='username' type='text' value={username} onChange={handleFields} required />
 
-            <label htmlFor='password'>Password</label>
-            <input id='password' name='password' type='password' value={password} onChange={handleFields} required />
+                <label htmlFor='password'>Password</label>
+                <input id='password' name='password' type='password' value={password} onChange={handleFields} required />
 
-            <button className='activeButton' type='submit' disabled={!username || !password}>Login</button>
-            <p>Don&apos;t have an account? <span className='underline' onClick={()=> setGameStatus('signup')}>Signup</span></p>
-        </form>
+                <button className='activeButton' type='submit' disabled={!username || !password}>Login</button>
+                <p>Don&apos;t have an account? <span className='underline' onClick={() => setGameStatus('signup')}>Signup</span></p>
+            </form>
+            <button className="activeButton wmax-60px mg-auto" onClick={() => setGameStatus('home')}>Back</button>
+        </>
     )
 }

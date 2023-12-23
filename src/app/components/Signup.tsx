@@ -94,7 +94,7 @@ export default function SignUp({
 
         return true
     }
-   
+
     const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = e.currentTarget;
@@ -116,33 +116,36 @@ export default function SignUp({
     }
 
     return (
-        <form className={login.signupForm} onSubmit={handleSignUp}>
-            <h2> SIGN UP</h2>
+        <>
+            <form className={login.signupForm} onSubmit={handleSignUp}>
+                <h2> SIGN UP</h2>
 
-            {(email != emailCopy && emailCopy) && <p className='error'>Emails do not match</p>}
-            <label htmlFor='email'>Email</label>
-            <input id='email' name='email' type='text' onChange={handleFields} value={email} required maxLength={30} />
+                {(email != emailCopy && emailCopy) && <p className='error'>Emails do not match</p>}
+                <label htmlFor='email'>Email</label>
+                <input id='email' name='email' type='text' onChange={handleFields} value={email} required maxLength={30} />
 
-            <label htmlFor='confirmEmail'>Confirm Email</label>
-            <input id='confirmEmail' name='confirmEmail' type='text' onChange={handleFields} value={emailCopy} required maxLength={30} />
+                <label htmlFor='confirmEmail'>Confirm Email</label>
+                <input id='confirmEmail' name='confirmEmail' type='text' onChange={handleFields} value={emailCopy} required maxLength={30} />
 
-            {!userNameAvailable && <p className='error'>Username not available!</p>}
-            <label htmlFor='username'>Username</label>
-            <input id='username' name='username' type='text' onBlur={handleUsernameCheck} onChange={handleFields} value={username} required maxLength={30} />
+                {!userNameAvailable && <p className='error'>Username not available!</p>}
+                <label htmlFor='username'>Username</label>
+                <input id='username' name='username' type='text' onBlur={handleUsernameCheck} onChange={handleFields} value={username} required maxLength={30} />
 
 
-            <label htmlFor='password'>Password</label>
-            <input id='password' name='password' type='text' onChange={handleFields} value={password} required maxLength={30} />
+                <label htmlFor='password'>Password</label>
+                <input id='password' name='password' type='text' onChange={handleFields} value={password} required maxLength={30} />
 
-            <ul>
-                <li key='upper' className={passwordRequirements.upper ? 'success' : ''}>Uppercase Letter</li>
-                <li key='lower' className={passwordRequirements.lower ? 'success' : ''}>Lowercase Letter</li>
-                <li key='special' className={passwordRequirements.special ? 'success' : ''}>Special Character</li>
-                <li key='min' className={passwordRequirements.length ? 'success' : ''}>8 characters minimum</li>
-            </ul>
+                <ul>
+                    <li key='upper' className={passwordRequirements.upper ? 'success' : ''}>Uppercase Letter</li>
+                    <li key='lower' className={passwordRequirements.lower ? 'success' : ''}>Lowercase Letter</li>
+                    <li key='special' className={passwordRequirements.special ? 'success' : ''}>Special Character</li>
+                    <li key='min' className={passwordRequirements.length ? 'success' : ''}>8 characters minimum</li>
+                </ul>
 
-            <button className='activeButton' type='submit' disabled={readyToSubmit()}>Sign Up</button>
-            <p>Already A User? <span className='underline' onClick={() => setGameStatus('login')}>Login</span></p>
-        </form>
+                <button className='activeButton' type='submit' disabled={readyToSubmit()}>Sign Up</button>
+                <p>Already A User? <span className='underline' onClick={() => setGameStatus('login')}>Login</span></p>
+            </form>
+            <button className="activeButton wmax-60px mg-auto" onClick={() => setGameStatus('home')}>Back</button>
+        </>
     )
 }

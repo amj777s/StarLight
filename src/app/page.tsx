@@ -72,11 +72,13 @@ export default function Home() {
   return (
     // Modedeled after Finite State Machine. Each Different state is represented by a component changing based upon certain criteria
     <div className={cursorStyle.includes('custom') ? `container noCursor ${theme}` : `container ${cursorStyle} ${theme}`} onMouseMove={changePosition} >
-      {greeting}
       <audio src={song} loop autoPlay muted={!playing}> </audio>
       {cursorStyle.includes('custom') && <div className={cursorStyle} ref={mouse}></div>}
-      <div className="activeButton optionButton firstOption" onClick={() => setPlaying(!playing)}><img className="optionIcon" src="/pics/audioIcon.png" /></div>
-      <div className="activeButton optionButton secondOption" onClick={() => theme === 'dark' ? setTheme('light') : setTheme('dark')}><img className="optionIcon" height={30} width={30} src="/pics/brightness.png" /></div>
+      <div className="optionsContainer">
+        {greeting}
+        <div className="activeButton optionButton " onClick={() => setPlaying(!playing)}><img className="optionIcon" src="/pics/audioIcon.png" /></div>
+        <div className="activeButton optionButton " onClick={() => theme === 'dark' ? setTheme('light') : setTheme('dark')}><img className="optionIcon" height={30} width={30} src="/pics/brightness.png" /></div>
+      </div>
       {gameStatus === 'home' && <StartScreen setGameStatus={setGameStatus} />}
       {gameStatus === 'playing' && <Game count={count} setCount={setCount} setGameStatus={setGameStatus} delay={delay} />}
       {gameStatus === 'game over' && <GameOver user={user} count={count} setCount={setCount} setGameStatus={setGameStatus} delay={delay} />}

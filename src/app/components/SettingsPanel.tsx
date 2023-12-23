@@ -17,6 +17,7 @@ export default function SettingsPanel({
 }) {
 
     const [activeSettingIndex, setActiveSettingIndex] = useState<number>(0);
+    
     let content;
 
     const handleSettingsClick = (e: React.MouseEvent<HTMLHeadingElement>, index: number, value: string) => {
